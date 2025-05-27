@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 
@@ -17,7 +19,6 @@ export default function SearchInput({ disabled }: Props) {
         />
       </div>
 
-      {/* TODO: add categories view all button*/}
       {/* TODO: add library button */}
     </div>
   );

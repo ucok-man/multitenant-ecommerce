@@ -23,6 +23,7 @@ export default async function StoreLayout({ children }: Props) {
         exists: false,
       },
     },
+    sort: "name",
   });
 
   return (

@@ -22,21 +22,28 @@ export default function CategoryDropdown(props: Props) {
     | Category[]
     | undefined;
 
-  const onMouseEnter = () => {
+  const handleMouseEnter = () => {
     if (subcategories && subcategories.length) {
       setIsOpen(true);
     }
   };
 
-  const onMouseLeave = () => {
+  const handleMouseLeave = () => {
     if (isOpen) setIsOpen(false);
+  };
+
+  const handleClick = () => {
+    if (props.category.subcategories?.docs?.length) {
+      setIsOpen(!isOpen);
+    }
   };
 
   return (
     <div
       ref={dropdownRef}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       <div className="relative">
         <Button
@@ -45,13 +52,14 @@ export default function CategoryDropdown(props: Props) {
             "h-11 px-4 bg-white transition-all border-transparent rounded-full hover:bg-white hover:border-primary text-black",
             props.isActive &&
               !props.isNavigationHovered &&
-              "bg-white border-primary"
+              "bg-white border-primary",
+            isOpen && "bg-white border-primary"
           )}
         >
           {props.category.name}
         </Button>
 
-        {subcategories && subcategories.length && (
+        {subcategories && subcategories.length > 0 && (
           <>
             <div
               className={cn(
@@ -77,12 +85,11 @@ export default function CategoryDropdown(props: Props) {
                   className="w-60 text-black rounded-md overflow-hidden border shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] -translate-y-[2px] -translate-x-[2px] "
                 >
                   <div>
-                    {/* TODO: add href */}
                     {subcategories.map((sub) => (
                       <Link
                         className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between items-center underline font-medium underline-offset-4"
                         key={sub.id}
-                        href={`/#`}
+                        href={`/${props.category.slug}/${sub.slug}`}
                       >
                         {sub.name}
                       </Link>
