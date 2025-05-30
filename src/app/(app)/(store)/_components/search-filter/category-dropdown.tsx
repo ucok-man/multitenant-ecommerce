@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useFloatPosition } from "@/hooks/use-float-position";
 import { cn } from "@/lib/utils";
-import { Category } from "@/payload-types";
+import { Category } from "@/modules/categories/types";
 import Link from "next/link";
 import { useRef, useState } from "react";
 

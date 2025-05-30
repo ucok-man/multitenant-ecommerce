@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Category } from "@/payload-types";
+import { Category } from "@/modules/categories/types";
 import { ListFilter } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import CategorySidebar from "../category-sidebar";
 import CategoryDropdown from "./category-dropdown";
+import CategorySidebar from "./category-sidebar";
 
 type Props = {
   categories: Category[];

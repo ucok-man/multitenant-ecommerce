@@ -1,5 +1,4 @@
-import payloadConfig from "@/payload.config";
-import { getPayload } from "payload";
+import { HydrateClient, prefetch, trpc } from "@/trpc/server";
 import { ReactNode } from "react";
 import Footer from "./_components/footer";
 import Navbar from "./_components/navbar";
@@ -10,26 +9,14 @@ type Props = {
 };
 
 export default async function StoreLayout({ children }: Props) {
-  const payload = await getPayload({
-    config: payloadConfig,
-  });
-
-  const categories = await payload.find({
-    collection: "categories",
-    depth: 1,
-    pagination: false, // load all
-    where: {
-      parent: {
-        exists: false,
-      },
-    },
-    sort: "name",
-  });
+  prefetch(trpc.categories.getMany.queryOptions());
 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <SearchFilter categories={categories.docs} />
+      <HydrateClient>
+        <SearchFilter />
+      </HydrateClient>
       <div className="grow bg-[#f4f4f0]">{children}</div>
       <Footer />
     </div>

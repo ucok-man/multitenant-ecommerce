@@ -1,3 +1,4 @@
+import { TRPCReactProvider } from "@/trpc/client";
 import type { Metadata } from "next";
 import { DM_Mono, DM_Sans, Poppins } from "next/font/google";
 import "./globals.css";
@@ -33,7 +34,7 @@ export default function RootLayout({
       <body
         className={`${dmsans.variable} ${dmMono.variable} ${poppins.variable} antialiased font-sans`}
       >
-        {children}
+        <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );

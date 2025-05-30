@@ -12,8 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-
-import { Category } from "@/payload-types";
+import { Category } from "@/modules/categories/types";
 
 type Props = {
   open: boolean;
